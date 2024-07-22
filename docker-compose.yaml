@@ -1,0 +1,13 @@
+services:
+  ark:
+    container_name: seny-ark
+    build:
+      context: .
+      target: build
+    volumes:
+    - ./:/app
+    - /app/node_modules
+    ports:
+    - 3003:3003
+    command: npm run dev
+

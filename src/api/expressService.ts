@@ -3,8 +3,8 @@ import helmet from "helmet";
 import cors from "cors";
 
 import express, { Express } from "express";
+import { EnvConfig } from "../envConfig";
 
-import { EnvConfig } from "envConfig";
 
 export class ExpressService {
 

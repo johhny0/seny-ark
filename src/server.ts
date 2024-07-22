@@ -1,9 +1,8 @@
 import "reflect-metadata"
 import { EnvConfig } from "./envConfig";
 import { ExpressService } from "./api/expressService";
-import { createConnection } from "typeorm";
-import { AppDataSource } from "./data-source";
 import { Dino } from "./entities/dino.entity";
+import AppDataSource from "./data-source";
 
 //https://cloudnweb.dev/2019/09/building-a-production-ready-node-js-app-with-typescript-and-docker/
 //https://www.npmjs.com/package/http-proxy-middleware

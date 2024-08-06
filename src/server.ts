@@ -44,20 +44,19 @@ async function main() {
     app.post("/dinos", async (req, res) => {
         const dinoRepository = AppDataSource.getRepository(Dino);
 
-        const { name } = req.body;
+        const { name, link } = req.body;
 
         const dinoExists = await dinoRepository.exists({ where: { name } });
 
         if (dinoExists) {
-            res.status(304).json({ msg: "Dino already saved" })
-            return;
+            return res.status(400).json({ msg: "🐱‍🐉🚫 Dino already saved" })
         }
 
-        const dino = new Dino(name);
+        const dino = new Dino(name, link);
 
         await dinoRepository.save(dino);
 
-        res.json(dino);
+        res.json({ ...dino, msg: "🐱‍🐉🟢 Dino saved" });
     })
 
     app.patch("/dinos/:id/catch", async (req, res) => {
@@ -68,8 +67,7 @@ async function main() {
         const dino = await dinoRepository.findOneBy({ id });
 
         if (dino == null) {
-            res.status(404).json({ msg: "🐱‍🐉 Not found" });
-            return;
+            return res.status(404).json({ msg: "🐱‍🐉 Not found" });
         }
 
         dino.catch = !dino.catch

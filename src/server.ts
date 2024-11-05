@@ -44,7 +44,7 @@ async function main() {
     app.post("/dinos", async (req, res) => {
         const dinoRepository = AppDataSource.getRepository(Dino);
 
-        const { name, link } = req.body;
+        const { name, link, img, entityId } = req.body;
 
         const dinoExists = await dinoRepository.exists({ where: { name } });
 
@@ -52,7 +52,7 @@ async function main() {
             return res.status(400).json({ msg: "🐱‍🐉🚫 Dino already saved" })
         }
 
-        const dino = new Dino(name, link);
+        const dino = new Dino(name, link, img, entityId);
 
         await dinoRepository.save(dino);
 

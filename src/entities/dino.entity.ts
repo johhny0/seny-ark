@@ -14,12 +14,20 @@ export class Dino extends BaseEntity {
     link: string;
 
     @Column()
+    img: string;
+
+    @Column()
+    entityId: string;
+
+    @Column()
     catch: boolean = false;
 
-    constructor(name: string, link: string) {
+    constructor(name: string, link: string, img: string, entityId: string) {
         super()
         this.id = uuid();
         this.name = name;
         this.link = link;
+        this.img = img;
+        this.entityId = entityId;
     }
 }
